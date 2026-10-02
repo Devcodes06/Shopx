@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopX - Admin Login</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Animate.css for subtle animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card login-card shadow-lg animate__animated animate__fadeInUp">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <h2 class="brand-logo"><i class="bi bi-shop text-gold me-2"></i>ShopX</h2>
+                    <p class="text-muted">Enter your admin credentials</p>
+                </div>
+                
+                <div id="login-alert" class="alert alert-danger d-none" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Invalid email or password.
+                </div>
+
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control border-start-0 ps-0" id="email" placeholder="admin@shop.com" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-lock"></i></span>
+                            <input type="password" class="form-control border-start-0 ps-0" id="password" placeholder="admin123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100 py-2 fw-bold text-uppercase tracking-wide">Login</button>
+                    <div class="mt-4 text-center">
+                        <small class="text-muted-dark opacity-75">Demo Credentials:<br>
+                        <strong class="text-white">admin@shop.com</strong> / <strong class="text-white">admin123</strong></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Login Logic -->
+    <script src="js/login.js"></script>
+</body>
+</html>

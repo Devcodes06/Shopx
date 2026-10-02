@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopX - Admin Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand-container">
+            <a href="dashboard.html" class="brand">
+                <i class="bi bi-shop text-gold me-2"></i> ShopX
+            </a>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="dashboard.html" class="active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+            <li><a href="#"><i class="bi bi-cart-check"></i> Orders</a></li>
+            <li><a href="#"><i class="bi bi-box-seam"></i> Products</a></li>
+            <li><a href="#"><i class="bi bi-people"></i> Customers</a></li>
+            <li><a href="#"><i class="bi bi-graph-up"></i> Analytics</a></li>
+            <li><a href="#"><i class="bi bi-gear"></i> Settings</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#" id="logout-btn"><i class="bi bi-box-arrow-left"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <div class="d-flex align-items-center gap-3">
+                <button class="mobile-toggle" id="sidebarToggle">
+                    <i class="bi bi-list"></i>
+                </button>
+                <h1 class="greeting-text">Welcome, Admin 👋</h1>
+            </div>
+            
+            <div class="nav-right">
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" placeholder="Search orders, products...">
+                </div>
+                
+                <div class="notification-bell">
+                    <i class="bi bi-bell"></i>
+                    <span class="badge bg-danger">4</span>
+                </div>
+                
+                <div class="user-profile">
+                    <div class="user-avatar">AD</div>
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Super Admin</span>
+                    </div>
+                    <i class="bi bi-chevron-down text-muted d-none d-lg-block ms-2" style="font-size: 0.8rem;"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            
+            <!-- Stats Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <div class="stat-label">Total Revenue</div>
+                                <div class="stat-value">₹84,590</div>
+                            </div>
+                            <div class="stat-icon icon-blue">
+                                <i class="bi bi-currency-rupee"></i>
+                            </div>
+                        </div>
+                        <div class="trend-badge trend-up">
+                            <i class="bi bi-arrow-up-short"></i> 12.5%
+                        </div>
+                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last month</span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <div class="stat-label">Orders Today</div>
+                                <div class="stat-value">1,245</div>
+                            </div>
+                            <div class="stat-icon icon-purple">
+                                <i class="bi bi-bag-check"></i>
+                            </div>
+                        </div>
+                        <div class="trend-badge trend-up">
+                            <i class="bi bi-arrow-up-short"></i> 8.2%
+                        </div>
+                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs yesterday</span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <div class="stat-label">New Customers</div>
+                                <div class="stat-value">84</div>
+                            </div>
+                            <div class="stat-icon icon-green">
+                                <i class="bi bi-people"></i>
+                            </div>
+                        </div>
+                        <div class="trend-badge trend-down">
+                            <i class="bi bi-arrow-down-short"></i> 2.1%
+                        </div>
+                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last week</span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="stat-card">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <div class="stat-label">Products in Stock</div>
+                                <div class="stat-value">4,329</div>
+                            </div>
+                            <div class="stat-icon icon-orange">
+                                <i class="bi bi-box-seam"></i>
+                            </div>
+                        </div>
+                        <div class="trend-badge trend-up">
+                            <i class="bi bi-arrow-up-short"></i> 1.5%
+                        </div>
+                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-lg-8">
+                    <div class="content-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">Revenue (Last 7 Days)</h5>
+                            <button class="btn btn-sm btn-light border"><i class="bi bi-three-dots"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="content-card">
+                        <h5 class="card-title mb-4">Sales by Category</h5>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table & Top Products Row -->
+            <div class="row g-4">
+                <div class="col-12 col-xl-8">
+                    <div class="content-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">Recent Orders</h5>
+                            <a href="#" class="text-decoration-none text-primary" style="font-size: 0.85rem; font-weight: 500;">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                        </div>
+                        <div class="custom-table-wrapper">
+                            <table class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Product</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">#ORD-0921</span></td>
+                                        <td><span class="fw-medium">Rahul Sharma</span></td>
+                                        <td>Sony Wireless Headphones</td>
+                                        <td class="fw-bold">₹12,999</td>
+                                        <td><span class="status-badge status-delivered">Delivered</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">#ORD-0922</span></td>
+                                        <td><span class="fw-medium">Priya Patel</span></td>
+                                        <td>Samsung 4K Smart TV</td>
+                                        <td class="fw-bold">₹45,500</td>
+                                        <td><span class="status-badge status-pending">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">#ORD-0923</span></td>
+                                        <td><span class="fw-medium">Amit Kumar</span></td>
+                                        <td>Nike Running Shoes</td>
+                                        <td class="fw-bold">₹4,200</td>
+                                        <td><span class="status-badge status-cancelled">Cancelled</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">#ORD-0924</span></td>
+                                        <td><span class="fw-medium">Sneha Gupta</span></td>
+                                        <td>Apple Watch Series 8</td>
+                                        <td class="fw-bold">₹42,000</td>
+                                        <td><span class="status-badge status-delivered">Delivered</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fw-bold text-dark">#ORD-0925</span></td>
+                                        <td><span class="fw-medium">Vikram Singh</span></td>
+                                        <td>Amazon Echo Dot</td>
+                                        <td class="fw-bold">₹3,499</td>
+                                        <td><span class="status-badge status-pending">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-xl-4">
+                    <div class="content-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="card-title mb-0">Top Products</h5>
+                            <button class="btn btn-sm btn-light border"><i class="bi bi-three-dots"></i></button>
+                        </div>
+                        
+                        <!-- Top Product 1 -->
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=150" alt="Apple Watch" class="product-img">
+                            <div class="product-info">
+                                <div class="product-name">Apple Watch Series 8</div>
+                                <div class="stock-info">
+                                    <span>Sales: 1,452</span>
+                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 12%</span>
+                                </div>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="ms-3 product-price">₹42k</div>
+                        </div>
+                        
+                        <!-- Top Product 2 -->
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150" alt="Headphones" class="product-img">
+                            <div class="product-info">
+                                <div class="product-name">Sony Noise Cancelling</div>
+                                <div class="stock-info">
+                                    <span>Sales: 985</span>
+                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 8%</span>
+                                </div>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div class="ms-3 product-price">₹13k</div>
+                        </div>
+
+                        <!-- Top Product 3 -->
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=150" alt="PS5" class="product-img">
+                            <div class="product-info">
+                                <div class="product-name">PlayStation 5 Console</div>
+                                <div class="stock-info">
+                                    <span>Sales: 512</span>
+                                    <span class="text-danger fw-medium"><i class="bi bi-arrow-down-short"></i> 4%</span>
+                                </div>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div class="ms-3 product-price">₹55k</div>
+                        </div>
+
+                        <!-- Top Product 4 -->
+                        <div class="product-item">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=150" alt="Headphones" class="product-img">
+                            <div class="product-info">
+                                <div class="product-name">Bose QuietComfort 45</div>
+                                <div class="stock-info">
+                                    <span>Sales: 402</span>
+                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 2%</span>
+                                </div>
+                                <div class="progress progress-thin">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            <div class="ms-3 product-price">₹28k</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom Dashboard Logic -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
