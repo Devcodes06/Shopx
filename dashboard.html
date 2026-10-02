@@ -3,314 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopX - Admin Dashboard</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <meta name="theme-color" content="#f4f5f8">
+    <meta name="description" content="A clear view of your ShopX store performance.">
+    <title>Overview — ShopX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-
-    <!-- Sidebar Overlay for Mobile -->
+<body class="dashboard-body">
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <div class="brand-container">
-            <a href="dashboard.html" class="brand">
-                <i class="bi bi-shop text-gold me-2"></i> ShopX
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+        <div class="sidebar-top">
+            <a class="brand brand-light" href="dashboard.html" aria-label="ShopX dashboard">
+                <span class="brand-mark"><i class="bi bi-bag-heart-fill" aria-hidden="true"></i></span>
+                <span>shop<span class="brand-accent">x</span></span>
+                <span class="brand-os">OS</span>
             </a>
+            <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close navigation"><i class="bi bi-x-lg"></i></button>
         </div>
-        <ul class="sidebar-nav">
-            <li><a href="dashboard.html" class="active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-            <li><a href="#"><i class="bi bi-cart-check"></i> Orders</a></li>
-            <li><a href="#"><i class="bi bi-box-seam"></i> Products</a></li>
-            <li><a href="#"><i class="bi bi-people"></i> Customers</a></li>
-            <li><a href="#"><i class="bi bi-graph-up"></i> Analytics</a></li>
-            <li><a href="#"><i class="bi bi-gear"></i> Settings</a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <a href="#" id="logout-btn"><i class="bi bi-box-arrow-left"></i> Logout</a>
+
+        <button class="workspace-switcher" type="button" aria-label="Current workspace: ShopX Studio">
+            <span class="workspace-avatar"><i class="bi bi-stars" aria-hidden="true"></i></span>
+            <span class="workspace-info"><strong>ShopX Studio</strong><small>Premium workspace</small></span>
+            <i class="bi bi-chevron-expand switcher-icon" aria-hidden="true"></i>
+        </button>
+
+        <p class="sidebar-label">WORKSPACE</p>
+        <nav class="sidebar-nav">
+            <a href="#overview" class="active" data-nav-link><i class="bi bi-grid-1x2-fill" aria-hidden="true"></i><span>Overview</span><span class="nav-indicator"></span></a>
+            <a href="#orders" data-nav-link><i class="bi bi-receipt" aria-hidden="true"></i><span>Orders</span><span class="nav-count">8</span></a>
+            <a href="#products" data-nav-link><i class="bi bi-box-seam" aria-hidden="true"></i><span>Products</span></a>
+            <a href="#analytics" data-nav-link><i class="bi bi-graph-up-arrow" aria-hidden="true"></i><span>Analytics</span></a>
+            <a href="#activity" data-nav-link><i class="bi bi-broadcast" aria-hidden="true"></i><span>Acquisition</span></a>
+        </nav>
+
+        <p class="sidebar-label sidebar-label-spaced">MANAGE</p>
+        <nav class="sidebar-nav sidebar-nav-secondary">
+            <a href="#activity" data-nav-link><i class="bi bi-people" aria-hidden="true"></i><span>Customers</span></a>
+            <a href="#products" data-nav-link><i class="bi bi-sliders2" aria-hidden="true"></i><span>Inventory</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-help-card">
+                <span class="help-orbit" aria-hidden="true"><i class="bi bi-stars"></i></span>
+                <strong>Make your next move.</strong>
+                <span>See what’s working and why.</span>
+                <a href="#analytics">Explore insights <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+            <a class="logout-link" href="index.html" id="logout-btn"><span class="logout-icon"><i class="bi bi-box-arrow-left" aria-hidden="true"></i></span>Sign out<span class="logout-shortcut">↗</span></a>
         </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content" id="mainContent">
-        <!-- Top Navbar -->
-        <nav class="top-navbar">
-            <div class="d-flex align-items-center gap-3">
-                <button class="mobile-toggle" id="sidebarToggle">
-                    <i class="bi bi-list"></i>
-                </button>
-                <h1 class="greeting-text">Welcome, Admin 👋</h1>
+        <header class="top-navbar">
+            <div class="nav-leading">
+                <button class="mobile-toggle" id="sidebarToggle" type="button" aria-label="Open navigation" aria-expanded="false"><i class="bi bi-list"></i></button>
+                <div class="breadcrumbs"><span>SHOPX STUDIO</span><i class="bi bi-chevron-right" aria-hidden="true"></i><strong>Overview</strong></div>
             </div>
-            
             <div class="nav-right">
-                <div class="search-bar">
-                    <i class="bi bi-search"></i>
-                    <input type="text" placeholder="Search orders, products...">
-                </div>
-                
-                <div class="notification-bell">
-                    <i class="bi bi-bell"></i>
-                    <span class="badge bg-danger">4</span>
-                </div>
-                
-                <div class="user-profile">
-                    <div class="user-avatar">AD</div>
-                    <div class="user-info">
-                        <span class="user-name">Admin User</span>
-                        <span class="user-role">Super Admin</span>
-                    </div>
-                    <i class="bi bi-chevron-down text-muted d-none d-lg-block ms-2" style="font-size: 0.8rem;"></i>
-                </div>
+                <label class="search-bar" for="dashboardSearch">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                    <input id="dashboardSearch" type="search" placeholder="Search orders, products…" autocomplete="off">
+                    <kbd>/</kbd>
+                </label>
+                <span class="nav-divider" aria-hidden="true"></span>
+                <button class="icon-button notification-button" id="notificationsButton" type="button" aria-label="Notifications, 4 unread">
+                    <i class="bi bi-bell" aria-hidden="true"></i><span class="notification-dot"></span>
+                </button>
+                <button class="user-profile" type="button" aria-label="Admin user profile">
+                    <span class="user-avatar">AD</span>
+                    <span class="user-info"><strong>Alex Morgan</strong><small>Store owner</small></span>
+                    <i class="bi bi-chevron-down profile-chevron" aria-hidden="true"></i>
+                </button>
             </div>
-        </nav>
+        </header>
 
-        <!-- Dashboard Content -->
         <div class="dashboard-container">
-            
-            <!-- Stats Row -->
-            <div class="row g-4 mb-4">
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div>
-                                <div class="stat-label">Total Revenue</div>
-                                <div class="stat-value">₹84,590</div>
-                            </div>
-                            <div class="stat-icon icon-blue">
-                                <i class="bi bi-currency-rupee"></i>
-                            </div>
-                        </div>
-                        <div class="trend-badge trend-up">
-                            <i class="bi bi-arrow-up-short"></i> 12.5%
-                        </div>
-                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last month</span>
-                    </div>
+            <section class="page-heading" id="overview" data-reveal>
+                <div>
+                    <p class="section-eyebrow"><span class="eyebrow-live"></span> STORE SNAPSHOT <span class="eyebrow-separator">/</span> <span id="dashboardDate">TODAY</span></p>
+                    <h1>Good morning, Alex<span class="heading-wave">✳</span></h1>
+                    <p class="heading-subtitle">Here’s what’s happening with <strong>ShopX Studio</strong> today.</p>
                 </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div>
-                                <div class="stat-label">Orders Today</div>
-                                <div class="stat-value">1,245</div>
-                            </div>
-                            <div class="stat-icon icon-purple">
-                                <i class="bi bi-bag-check"></i>
-                            </div>
-                        </div>
-                        <div class="trend-badge trend-up">
-                            <i class="bi bi-arrow-up-short"></i> 8.2%
-                        </div>
-                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs yesterday</span>
-                    </div>
+                <div class="heading-actions">
+                    <div class="period-label"><i class="bi bi-calendar3" aria-hidden="true"></i><span>Today, 9:41 AM</span><i class="bi bi-chevron-down" aria-hidden="true"></i></div>
+                    <button class="button-primary" id="exportButton" type="button"><i class="bi bi-download" aria-hidden="true"></i> Export report</button>
                 </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div>
-                                <div class="stat-label">New Customers</div>
-                                <div class="stat-value">84</div>
-                            </div>
-                            <div class="stat-icon icon-green">
-                                <i class="bi bi-people"></i>
-                            </div>
-                        </div>
-                        <div class="trend-badge trend-down">
-                            <i class="bi bi-arrow-down-short"></i> 2.1%
-                        </div>
-                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last week</span>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-xl-3">
-                    <div class="stat-card">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div>
-                                <div class="stat-label">Products in Stock</div>
-                                <div class="stat-value">4,329</div>
-                            </div>
-                            <div class="stat-icon icon-orange">
-                                <i class="bi bi-box-seam"></i>
-                            </div>
-                        </div>
-                        <div class="trend-badge trend-up">
-                            <i class="bi bi-arrow-up-short"></i> 1.5%
-                        </div>
-                        <span class="text-muted ms-2" style="font-size: 0.8rem;">vs last month</span>
-                    </div>
-                </div>
-            </div>
+            </section>
 
-            <!-- Charts Row -->
-            <div class="row g-4 mb-4">
-                <div class="col-12 col-lg-8">
-                    <div class="content-card">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="card-title mb-0">Revenue (Last 7 Days)</h5>
-                            <button class="btn btn-sm btn-light border"><i class="bi bi-three-dots"></i></button>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="revenueChart"></canvas>
-                        </div>
+            <section class="hero-banner" aria-label="Weekly store performance" data-reveal>
+                <div class="hero-grid-lines" aria-hidden="true"></div>
+                <div class="hero-glow hero-glow-left" aria-hidden="true"></div>
+                <div class="hero-glow hero-glow-right" aria-hidden="true"></div>
+                <div class="hero-copy">
+                    <p class="hero-kicker"><span class="hero-kicker-dot"></span> YOUR WEEK, IN FOCUS</p>
+                    <h2>A good week<br>to make <em>moves.</em></h2>
+                    <p>Sales are finding their rhythm. Here’s the signal behind the momentum — and where to take it next.</p>
+                    <a class="hero-link" href="#analytics">Explore your growth <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+                    <div class="hero-footnote"><span class="hero-footnote-line"></span> LIVE STORE DATA <span class="hero-footnote-dot">·</span> UPDATED JUST NOW</div>
+                </div>
+                <div class="hero-visual" id="heroVisual" aria-hidden="true">
+                    <div class="hero-orbit hero-orbit-one"><span></span></div>
+                    <div class="hero-orbit hero-orbit-two"><span></span></div>
+                    <div class="hero-orb"></div>
+                    <div class="hero-art-card" id="heroArtCard">
+                        <img src="assets/shopx-headphones.jpg" alt="">
+                        <div class="hero-art-shade"></div>
+                        <div class="hero-art-label"><span>SHOPX EDIT</span><strong>Sound, reimagined.</strong></div>
+                    </div>
+                    <div class="hero-revenue-float">
+                        <span class="float-label">THIS WEEK</span>
+                        <strong>₹2,84,590</strong>
+                        <span class="float-change"><i class="bi bi-arrow-up-right"></i> 18.6%</span>
+                        <svg viewBox="0 0 154 36" preserveAspectRatio="none"><path d="M1 29 C15 30 17 16 29 21 S43 31 55 18 S72 23 82 11 S101 24 111 13 S133 16 153 2"></path></svg>
+                    </div>
+                    <div class="hero-orders-float"><span class="orders-pulse"></span><span><strong>24 new orders</strong><small>in the last hour</small></span><i class="bi bi-arrow-up-right"></i></div>
+                </div>
+                <span class="hero-index" aria-hidden="true">01 — 04</span>
+            </section>
+
+            <section class="metrics-grid" aria-label="Store metrics">
+                <article class="metric-card" data-reveal data-delay="0">
+                    <div class="metric-top"><span class="metric-label">Gross sales</span><span class="metric-icon metric-icon-violet"><i class="bi bi-currency-rupee" aria-hidden="true"></i></span></div>
+                    <strong class="metric-value" data-counter="84590" data-prefix="₹" data-number-format="indian">₹84,590</strong>
+                    <div class="metric-bottom"><span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 12.5%</span><span class="metric-period">vs last month</span>
+                        <svg class="metric-sparkline sparkline-violet" viewBox="0 0 86 28" preserveAspectRatio="none" aria-hidden="true"><path d="M1 23 C10 18 12 21 19 15 S29 18 37 12 S45 17 52 9 S65 13 71 7 S78 8 85 2"></path></svg>
+                    </div>
+                </article>
+                <article class="metric-card" data-reveal data-delay="1">
+                    <div class="metric-top"><span class="metric-label">Orders today</span><span class="metric-icon metric-icon-peach"><i class="bi bi-bag-check" aria-hidden="true"></i></span></div>
+                    <strong class="metric-value" data-counter="1245" data-number-format="indian">1,245</strong>
+                    <div class="metric-bottom"><span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 8.2%</span><span class="metric-period">vs yesterday</span>
+                        <svg class="metric-sparkline sparkline-peach" viewBox="0 0 86 28" preserveAspectRatio="none" aria-hidden="true"><path d="M1 22 C9 19 13 24 19 14 S29 19 35 12 S46 14 53 8 S64 17 70 8 S78 11 85 3"></path></svg>
+                    </div>
+                </article>
+                <article class="metric-card" data-reveal data-delay="2">
+                    <div class="metric-top"><span class="metric-label">New customers</span><span class="metric-icon metric-icon-mint"><i class="bi bi-person-plus" aria-hidden="true"></i></span></div>
+                    <strong class="metric-value" data-counter="84">84</strong>
+                    <div class="metric-bottom"><span class="trend trend-down"><i class="bi bi-arrow-down-right"></i> 2.1%</span><span class="metric-period">vs last week</span>
+                        <svg class="metric-sparkline sparkline-mint" viewBox="0 0 86 28" preserveAspectRatio="none" aria-hidden="true"><path d="M1 5 C10 9 13 5 20 12 S29 8 36 16 S48 12 54 18 S67 13 72 21 S80 17 85 25"></path></svg>
+                    </div>
+                </article>
+                <article class="metric-card" data-reveal data-delay="3">
+                    <div class="metric-top"><span class="metric-label">Products in stock</span><span class="metric-icon metric-icon-blue"><i class="bi bi-box-seam" aria-hidden="true"></i></span></div>
+                    <strong class="metric-value" data-counter="4329" data-number-format="indian">4,329</strong>
+                    <div class="metric-bottom"><span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 1.5%</span><span class="metric-period">vs last month</span>
+                        <svg class="metric-sparkline sparkline-blue" viewBox="0 0 86 28" preserveAspectRatio="none" aria-hidden="true"><path d="M1 22 C10 17 14 20 20 16 S30 18 38 11 S48 15 54 8 S65 13 71 7 S79 9 85 3"></path></svg>
+                    </div>
+                </article>
+            </section>
+
+            <section class="analytics-section" id="analytics" aria-labelledby="analyticsTitle">
+                <div class="section-heading" data-reveal>
+                    <div>
+                        <p class="section-eyebrow">THE BIG PICTURE <span class="eyebrow-separator">/</span> PERFORMANCE</p>
+                        <h2 id="analyticsTitle">Follow the momentum<span>.</span></h2>
+                    </div>
+                    <div class="range-switch" role="group" aria-label="Revenue chart time range">
+                        <button type="button" class="range-button is-active" data-range="7d" aria-pressed="true">7 days</button>
+                        <button type="button" class="range-button" data-range="30d" aria-pressed="false">30 days</button>
+                        <button type="button" class="range-button" data-range="90d" aria-pressed="false">90 days</button>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4">
-                    <div class="content-card">
-                        <h5 class="card-title mb-4">Sales by Category</h5>
-                        <div class="chart-container">
-                            <canvas id="categoryChart"></canvas>
+
+                <div class="analytics-grid">
+                    <article class="panel revenue-panel" data-reveal>
+                        <div class="panel-heading revenue-heading">
+                            <div><span class="panel-overline">REVENUE OVER TIME</span><h3>Sales performance</h3></div>
+                            <button class="more-button" type="button" id="chartInfoButton" aria-label="About the revenue chart"><i class="bi bi-three-dots"></i></button>
                         </div>
-                    </div>
+                        <div class="chart-summary"><strong id="chartTotal">₹84,590</strong><span class="trend trend-up"><i class="bi bi-arrow-up-right"></i> 12.5%</span><span>compared to previous period</span></div>
+                        <div class="chart-container"><canvas id="revenueChart" role="img" aria-label="Revenue chart for the selected period"></canvas><svg class="chart-fallback" viewBox="0 0 720 220" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="revenueFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#8372ee" stop-opacity=".22"/><stop offset="100%" stop-color="#8372ee" stop-opacity="0"/></linearGradient></defs><g class="fallback-grid"><path d="M42 25H710M42 70H710M42 115H710M42 160H710"/><path d="M42 18V174"/></g><path class="fallback-area" d="M43 137 C95 125 103 108 145 116 S198 147 241 100 S304 119 348 78 S413 113 458 64 S524 83 568 45 S632 68 708 23 L708 174 L43 174Z"/><path class="fallback-line" d="M43 137 C95 125 103 108 145 116 S198 147 241 100 S304 119 348 78 S413 113 458 64 S524 83 568 45 S632 68 708 23"/><g class="fallback-labels"><text x="42" y="205">MON</text><text x="151" y="205">TUE</text><text x="261" y="205">WED</text><text x="372" y="205">THU</text><text x="482" y="205">FRI</text><text x="592" y="205">SAT</text><text x="688" y="205">SUN</text></g></svg></div>
+                        <div class="chart-footer"><span><i class="chart-legend-dot"></i> Gross sales</span><span>All figures in INR</span></div>
+                    </article>
+
+                    <article class="panel category-panel" data-reveal>
+                        <div class="panel-heading">
+                            <div><span class="panel-overline">WHAT’S SELLING</span><h3>Sales by category</h3></div>
+                            <button class="more-button" type="button" aria-label="More category options"><i class="bi bi-three-dots"></i></button>
+                        </div>
+                        <div class="donut-wrap"><canvas id="categoryChart" role="img" aria-label="Donut chart showing sales by product category"></canvas><div class="donut-fallback" aria-hidden="true"></div><div class="donut-center"><strong>45%</strong><span>Electronics</span></div></div>
+                        <div class="category-legend">
+                            <div class="legend-row"><span class="legend-name"><i class="legend-dot dot-violet"></i>Electronics</span><strong>45%</strong><span>₹38.1k</span></div>
+                            <div class="legend-row"><span class="legend-name"><i class="legend-dot dot-lime"></i>Clothing</span><strong>25%</strong><span>₹21.1k</span></div>
+                            <div class="legend-row"><span class="legend-name"><i class="legend-dot dot-orange"></i>Home & living</span><strong>20%</strong><span>₹16.9k</span></div>
+                            <div class="legend-row"><span class="legend-name"><i class="legend-dot dot-blue"></i>Sports</span><strong>10%</strong><span>₹8.5k</span></div>
+                        </div>
+                    </article>
                 </div>
-            </div>
+            </section>
 
-            <!-- Table & Top Products Row -->
-            <div class="row g-4">
-                <div class="col-12 col-xl-8">
-                    <div class="content-card">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="card-title mb-0">Recent Orders</h5>
-                            <a href="#" class="text-decoration-none text-primary" style="font-size: 0.85rem; font-weight: 500;">View All <i class="bi bi-arrow-right ms-1"></i></a>
-                        </div>
-                        <div class="custom-table-wrapper">
-                            <table class="table custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer</th>
-                                        <th>Product</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark">#ORD-0921</span></td>
-                                        <td><span class="fw-medium">Rahul Sharma</span></td>
-                                        <td>Sony Wireless Headphones</td>
-                                        <td class="fw-bold">₹12,999</td>
-                                        <td><span class="status-badge status-delivered">Delivered</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark">#ORD-0922</span></td>
-                                        <td><span class="fw-medium">Priya Patel</span></td>
-                                        <td>Samsung 4K Smart TV</td>
-                                        <td class="fw-bold">₹45,500</td>
-                                        <td><span class="status-badge status-pending">Pending</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark">#ORD-0923</span></td>
-                                        <td><span class="fw-medium">Amit Kumar</span></td>
-                                        <td>Nike Running Shoes</td>
-                                        <td class="fw-bold">₹4,200</td>
-                                        <td><span class="status-badge status-cancelled">Cancelled</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark">#ORD-0924</span></td>
-                                        <td><span class="fw-medium">Sneha Gupta</span></td>
-                                        <td>Apple Watch Series 8</td>
-                                        <td class="fw-bold">₹42,000</td>
-                                        <td><span class="status-badge status-delivered">Delivered</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark">#ORD-0925</span></td>
-                                        <td><span class="fw-medium">Vikram Singh</span></td>
-                                        <td>Amazon Echo Dot</td>
-                                        <td class="fw-bold">₹3,499</td>
-                                        <td><span class="status-badge status-pending">Pending</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <section class="lower-grid" aria-label="Orders and products">
+                <article class="panel orders-panel" id="orders" data-reveal>
+                    <div class="panel-heading orders-heading">
+                        <div><span class="panel-overline">THE LATEST</span><h3>Recent orders <span class="order-count">05</span></h3></div>
+                        <a class="text-link" href="#orders">View all orders <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
                     </div>
-                </div>
-                
-                <div class="col-12 col-xl-4">
-                    <div class="content-card">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="card-title mb-0">Top Products</h5>
-                            <button class="btn btn-sm btn-light border"><i class="bi bi-three-dots"></i></button>
-                        </div>
-                        
-                        <!-- Top Product 1 -->
-                        <div class="product-item">
-                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=150" alt="Apple Watch" class="product-img">
-                            <div class="product-info">
-                                <div class="product-name">Apple Watch Series 8</div>
-                                <div class="stock-info">
-                                    <span>Sales: 1,452</span>
-                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 12%</span>
-                                </div>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="ms-3 product-price">₹42k</div>
-                        </div>
-                        
-                        <!-- Top Product 2 -->
-                        <div class="product-item">
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=150" alt="Headphones" class="product-img">
-                            <div class="product-info">
-                                <div class="product-name">Sony Noise Cancelling</div>
-                                <div class="stock-info">
-                                    <span>Sales: 985</span>
-                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 8%</span>
-                                </div>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div class="ms-3 product-price">₹13k</div>
-                        </div>
-
-                        <!-- Top Product 3 -->
-                        <div class="product-item">
-                            <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=150" alt="PS5" class="product-img">
-                            <div class="product-info">
-                                <div class="product-name">PlayStation 5 Console</div>
-                                <div class="stock-info">
-                                    <span>Sales: 512</span>
-                                    <span class="text-danger fw-medium"><i class="bi bi-arrow-down-short"></i> 4%</span>
-                                </div>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
-                                </div>
-                            </div>
-                            <div class="ms-3 product-price">₹55k</div>
-                        </div>
-
-                        <!-- Top Product 4 -->
-                        <div class="product-item">
-                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=150" alt="Headphones" class="product-img">
-                            <div class="product-info">
-                                <div class="product-name">Bose QuietComfort 45</div>
-                                <div class="stock-info">
-                                    <span>Sales: 402</span>
-                                    <span class="text-success fw-medium"><i class="bi bi-arrow-up-short"></i> 2%</span>
-                                </div>
-                                <div class="progress progress-thin">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 35%"></div>
-                                </div>
-                            </div>
-                            <div class="ms-3 product-price">₹28k</div>
-                        </div>
-
+                    <div class="table-scroll">
+                        <table class="orders-table">
+                            <thead><tr><th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Product</th><th scope="col">Amount</th><th scope="col">Status</th></tr></thead>
+                            <tbody id="ordersBody">
+                                <tr data-order-row><td><strong class="order-id">#0921</strong><small>Today, 9:32 AM</small></td><td><span class="customer-cell"><span class="customer-avatar avatar-rose">RS</span><span>Rahul Sharma</span></span></td><td>Sony Wireless Headphones</td><td class="amount-cell">₹12,999</td><td><span class="status-badge status-delivered"><i></i>Delivered</span></td></tr>
+                                <tr data-order-row><td><strong class="order-id">#0922</strong><small>Today, 9:18 AM</small></td><td><span class="customer-cell"><span class="customer-avatar avatar-lilac">PP</span><span>Priya Patel</span></span></td><td>Samsung 4K Smart TV</td><td class="amount-cell">₹45,500</td><td><span class="status-badge status-transit"><i></i>In transit</span></td></tr>
+                                <tr data-order-row><td><strong class="order-id">#0923</strong><small>Today, 8:57 AM</small></td><td><span class="customer-cell"><span class="customer-avatar avatar-sand">AK</span><span>Amit Kumar</span></span></td><td>Nike Running Shoes</td><td class="amount-cell">₹4,200</td><td><span class="status-badge status-processing"><i></i>Processing</span></td></tr>
+                                <tr data-order-row><td><strong class="order-id">#0924</strong><small>Today, 8:41 AM</small></td><td><span class="customer-cell"><span class="customer-avatar avatar-mint">SG</span><span>Sneha Gupta</span></span></td><td>Apple Watch Series 8</td><td class="amount-cell">₹42,000</td><td><span class="status-badge status-delivered"><i></i>Delivered</span></td></tr>
+                                <tr data-order-row><td><strong class="order-id">#0925</strong><small>Today, 8:29 AM</small></td><td><span class="customer-cell"><span class="customer-avatar avatar-blue">VS</span><span>Vikram Singh</span></span></td><td>Amazon Echo Dot</td><td class="amount-cell">₹3,499</td><td><span class="status-badge status-processing"><i></i>Processing</span></td></tr>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-            </div>
+                    <div class="panel-footnote"><span><span class="footnote-live"></span> Live order feed</span><span>Showing latest 5 orders</span></div>
+                </article>
 
+                <article class="panel products-panel" id="products" data-reveal>
+                    <div class="panel-heading products-heading">
+                        <div><span class="panel-overline">THE CROWD FAVOURITES</span><h3>Top products</h3></div>
+                        <a class="round-arrow" href="#activity" aria-label="Explore product insights"><i class="bi bi-arrow-up-right"></i></a>
+                    </div>
+                    <div class="product-list">
+                        <article class="product-row">
+                            <div class="product-image product-watch"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&amp;fit=crop&amp;w=180&amp;q=82" alt="Apple Watch Series 8" loading="lazy"></div>
+                            <div class="product-details"><strong>Apple Watch Series 8</strong><span>1,452 sold <i>·</i> <b>+12%</b></span><div class="product-progress"><span style="--progress: 86%"></span></div></div>
+                            <strong class="product-price">₹42k</strong>
+                        </article>
+                        <article class="product-row">
+                            <div class="product-image product-headphones"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&amp;fit=crop&amp;w=180&amp;q=82" alt="Sony Noise Cancelling headphones" loading="lazy"></div>
+                            <div class="product-details"><strong>Sony Noise Cancelling</strong><span>985 sold <i>·</i> <b>+8%</b></span><div class="product-progress"><span style="--progress: 70%"></span></div></div>
+                            <strong class="product-price">₹13k</strong>
+                        </article>
+                        <article class="product-row">
+                            <div class="product-image product-console"><img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&amp;fit=crop&amp;w=180&amp;q=82" alt="PlayStation 5 console" loading="lazy"></div>
+                            <div class="product-details"><strong>PlayStation 5 Console</strong><span>512 sold <i>·</i> <b class="product-down">−4%</b></span><div class="product-progress"><span style="--progress: 46%"></span></div></div>
+                            <strong class="product-price">₹55k</strong>
+                        </article>
+                        <article class="product-row">
+                            <div class="product-image product-speaker"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&amp;fit=crop&amp;w=180&amp;q=82" alt="Bose QuietComfort headphones" loading="lazy"></div>
+                            <div class="product-details"><strong>Bose QuietComfort 45</strong><span>402 sold <i>·</i> <b>+2%</b></span><div class="product-progress"><span style="--progress: 34%"></span></div></div>
+                            <strong class="product-price">₹28k</strong>
+                        </article>
+                    </div>
+                    <a class="products-link" href="#activity">View product performance <i class="bi bi-arrow-right"></i></a>
+                </article>
+            </section>
+
+            <section class="bottom-grid" id="activity" aria-label="Store insights">
+                <article class="panel channels-panel" data-reveal>
+                    <div class="panel-heading">
+                        <div><span class="panel-overline">GROWTH, FROM EVERYWHERE</span><h3>Where customers find you</h3></div>
+                        <span class="live-caption"><span class="footnote-live"></span> THIS MONTH</span>
+                    </div>
+                    <div class="channel-rows">
+                        <div class="channel-row"><span class="channel-icon channel-direct"><i class="bi bi-globe2"></i></span><span class="channel-name">Direct & search</span><div class="channel-track"><span style="--channel-width: 76%"></span></div><strong>48%</strong></div>
+                        <div class="channel-row"><span class="channel-icon channel-social"><i class="bi bi-instagram"></i></span><span class="channel-name">Social media</span><div class="channel-track"><span style="--channel-width: 52%"></span></div><strong>28%</strong></div>
+                        <div class="channel-row"><span class="channel-icon channel-referral"><i class="bi bi-link-45deg"></i></span><span class="channel-name">Referral</span><div class="channel-track"><span style="--channel-width: 34%"></span></div><strong>16%</strong></div>
+                        <div class="channel-row"><span class="channel-icon channel-email"><i class="bi bi-envelope"></i></span><span class="channel-name">Email</span><div class="channel-track"><span style="--channel-width: 18%"></span></div><strong>8%</strong></div>
+                    </div>
+                </article>
+                <article class="fulfillment-card" data-reveal>
+                    <div class="fulfillment-decoration" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <div class="fulfillment-top"><span class="fulfillment-icon"><i class="bi bi-box2-heart"></i></span><span class="fulfillment-status"><i></i> LOOKING GOOD</span></div>
+                    <span class="panel-overline">FULFILMENT HEALTH</span>
+                    <h3>Ship it like<br>you mean it.</h3>
+                    <p>Most orders are reaching their new homes right on time.</p>
+                    <div class="fulfillment-meter"><div><span>On-time delivery</span><strong>96.4%</strong></div><div class="meter-track"><span></span></div></div>
+                    <a href="#orders">See order activity <i class="bi bi-arrow-up-right"></i></a>
+                </article>
+            </section>
+
+            <footer class="dashboard-footer"><a class="brand brand-footer" href="#overview"><span class="brand-mark"><i class="bi bi-bag-heart-fill" aria-hidden="true"></i></span><span>shop<span class="brand-accent">x</span></span></a><span>Clear views. Better moves. <span class="footer-star">✳</span></span><span>SHOPX COMMERCE OS <span class="footer-version">02.0</span></span></footer>
         </div>
     </main>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Custom Dashboard Logic -->
+    <div class="toast-message" id="toastMessage" role="status" aria-live="polite"><i class="bi bi-check-circle-fill" aria-hidden="true"></i><span id="toastText"></span></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>

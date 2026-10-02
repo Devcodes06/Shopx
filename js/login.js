@@ -1,58 +1,80 @@
-// js/login.js
+// ShopX sign-in: demo authentication and small, purposeful interactions.
 document.addEventListener('DOMContentLoaded', () => {
-    // If already logged in, redirect to dashboard
-    if (localStorage.getItem('loggedIn') === 'true') {
-        window.location.href = 'dashboard.html';
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true' || sessionStorage.getItem('loggedIn') === 'true';
+    if (isLoggedIn) {
+        window.location.replace('dashboard.html');
+        return;
     }
 
-    const loginForm = document.getElementById('login-form');
-    const loginAlert = document.getElementById('login-alert');
+    const form = document.getElementById('login-form');
+    const alert = document.getElementById('login-alert');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const demoButton = document.getElementById('demoAutofill');
+    const passwordToggle = document.getElementById('passwordToggle');
+    let alertTimer;
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-
-            // Hardcoded validation
-            if (email === 'admin@shop.com' && password === 'admin123') {
-                // Hide alert if visible
-                loginAlert.classList.add('d-none');
-                
-                // Set localStorage
-                localStorage.setItem('loggedIn', 'true');
-                
-                // Show some native feedback on button
-                const btn = loginForm.querySelector('button[type="submit"]');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Authenticating...';
-                btn.disabled = true;
-
-                // Simulate slight delay for realism and animation observation
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 800);
-            } else {
-                // Show error alert
-                loginAlert.classList.remove('d-none');
-                
-                // Add Animate.css shake effect
-                loginAlert.classList.remove('animate__shakeX'); // reset if already shaken
-                void loginAlert.offsetWidth; // trigger reflow
-                loginAlert.classList.add('animate__animated', 'animate__shakeX');
-                
-                // Shake the form slightly as well
-                const card = document.querySelector('.login-card');
-                card.classList.remove('animate__headShake');
-                void card.offsetWidth;
-                card.classList.add('animate__animated', 'animate__headShake');
-                
-                // Auto-hide alert after 5 seconds
-                setTimeout(() => {
-                    loginAlert.classList.add('d-none');
-                }, 5000);
-            }
+    if (demoButton) {
+        demoButton.addEventListener('click', () => {
+            emailInput.value = 'admin@shop.com';
+            passwordInput.value = 'admin123';
+            alert.hidden = true;
+            emailInput.focus();
         });
     }
+
+    if (passwordToggle && passwordInput) {
+        passwordToggle.addEventListener('click', () => {
+            const showing = passwordInput.type === 'text';
+            passwordInput.type = showing ? 'password' : 'text';
+            passwordToggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+            passwordToggle.innerHTML = `<i class="bi ${showing ? 'bi-eye' : 'bi-eye-slash'}" aria-hidden="true"></i>`;
+        });
+    }
+
+    if (!form) return;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value;
+
+        if (email === 'admin@shop.com' && password === 'admin123') {
+            window.clearTimeout(alertTimer);
+            alert.hidden = true;
+
+            // Honour the checkbox using persistent or tab-scoped demo access.
+            if (document.getElementById('remember').checked) {
+                localStorage.setItem('loggedIn', 'true');
+                sessionStorage.removeItem('loggedIn');
+            } else {
+                sessionStorage.setItem('loggedIn', 'true');
+                localStorage.removeItem('loggedIn');
+            }
+
+            const submitButton = form.querySelector('button[type="submit"]');
+            const label = submitButton.querySelector('.submit-label');
+            const icon = submitButton.querySelector('.submit-icon');
+            submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
+            label.textContent = 'Opening your workspace…';
+            icon.classList.add('is-spinning');
+            icon.innerHTML = '<i class="bi bi-arrow-repeat" aria-hidden="true"></i>';
+
+            window.setTimeout(() => window.location.assign('dashboard.html'), 500);
+            return;
+        }
+
+        alert.hidden = false;
+        form.classList.remove('is-shaking');
+        // Restart the shake so repeated invalid attempts still get feedback.
+        void form.offsetWidth;
+        form.classList.add('is-shaking');
+        emailInput.focus();
+        window.clearTimeout(alertTimer);
+        alertTimer = window.setTimeout(() => {
+            alert.hidden = true;
+            form.classList.remove('is-shaking');
+        }, 5200);
+    });
 });

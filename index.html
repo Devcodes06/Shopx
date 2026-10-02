@@ -3,57 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopX - Admin Login</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Animate.css for subtle animations -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <meta name="theme-color" content="#11121b">
+    <meta name="description" content="ShopX brings every part of your store into focus.">
+    <title>ShopX — Commerce, in focus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="login-body">
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card login-card shadow-lg animate__animated animate__fadeInUp">
-            <div class="card-body p-5">
-                <div class="text-center mb-4">
-                    <h2 class="brand-logo"><i class="bi bi-shop text-gold me-2"></i>ShopX</h2>
-                    <p class="text-muted">Enter your admin credentials</p>
-                </div>
-                
-                <div id="login-alert" class="alert alert-danger d-none" role="alert">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Invalid email or password.
-                </div>
-
-                <form id="login-form">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control border-start-0 ps-0" id="email" placeholder="admin@shop.com" required>
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-transparent border-end-0 text-muted"><i class="bi bi-lock"></i></span>
-                            <input type="password" class="form-control border-start-0 ps-0" id="password" placeholder="admin123" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-gold w-100 py-2 fw-bold text-uppercase tracking-wide">Login</button>
-                    <div class="mt-4 text-center">
-                        <small class="text-muted-dark opacity-75">Demo Credentials:<br>
-                        <strong class="text-white">admin@shop.com</strong> / <strong class="text-white">admin123</strong></small>
-                    </div>
-                </form>
+    <div class="login-noise" aria-hidden="true"></div>
+    <div class="login-shell">
+        <section class="login-story" aria-labelledby="story-title">
+            <div class="story-topline">
+                <a class="brand brand-light" href="index.html" aria-label="ShopX home">
+                    <span class="brand-mark"><i class="bi bi-bag-heart-fill" aria-hidden="true"></i></span>
+                    <span>shop<span class="brand-accent">x</span></span>
+                </a>
+                <span class="workspace-chip"><span class="status-dot"></span> COMMERCE OS <span class="chip-divider">/</span> 02.0</span>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Login Logic -->
+            <div class="story-content">
+                <p class="eyebrow"><span class="eyebrow-rule"></span> THE COMMERCE PULSE</p>
+                <h1 id="story-title">More than<br>a <span>storefront.</span></h1>
+                <p class="story-description">One beautifully clear view of your business. Track what matters, spot what’s next, and make every move count.</p>
+                <div class="story-proof">
+                    <div class="proof-avatars" aria-hidden="true">
+                        <span class="proof-avatar proof-avatar-one">M</span>
+                        <span class="proof-avatar proof-avatar-two">J</span>
+                        <span class="proof-avatar proof-avatar-three">A</span>
+                        <span class="proof-avatar proof-avatar-four"><i class="bi bi-stars"></i></span>
+                    </div>
+                    <div><strong>Made for momentum</strong><span>Everything in its right place.</span></div>
+                </div>
+            </div>
+
+            <div class="login-stage" aria-hidden="true">
+                <div class="stage-grid"></div>
+                <div class="stage-aura stage-aura-one"></div>
+                <div class="stage-aura stage-aura-two"></div>
+                <div class="stage-orbit stage-orbit-one"><span></span></div>
+                <div class="stage-orbit stage-orbit-two"><span></span></div>
+                <div class="stage-object">
+                    <div class="stage-object-rim"></div>
+                    <img src="assets/shopx-headphones.jpg" alt="">
+                    <div class="stage-object-label"><span>SHOP THE MOMENT</span><strong>Sound, reimagined.</strong></div>
+                </div>
+                <div class="stage-insight-card">
+                    <div class="stage-insight-top"><span>WEEKLY REVENUE</span><span class="insight-growth"><i class="bi bi-arrow-up-right"></i> 18.6%</span></div>
+                    <strong>₹2,84,590</strong>
+                    <svg viewBox="0 0 160 42" preserveAspectRatio="none">
+                        <path class="sparkline-shadow" d="M1 34 C15 31 18 19 30 24 S48 31 59 17 S77 22 88 14 S105 21 116 10 S140 13 159 3"></path>
+                        <path class="sparkline-line" d="M1 34 C15 31 18 19 30 24 S48 31 59 17 S77 22 88 14 S105 21 116 10 S140 13 159 3"></path>
+                    </svg>
+                </div>
+                <div class="stage-order-pill"><span class="pill-pulse"></span><span><strong>24 new orders</strong><small>in the last hour</small></span><i class="bi bi-arrow-up-right"></i></div>
+                <div class="stage-caption">A LITTLE MORE CLARITY. A LOT MORE POSSIBILITY.</div>
+            </div>
+
+            <div class="story-footer"><span>© 2026 ShopX Commerce</span><span><i class="bi bi-shield-check"></i> Your store, securely in sync</span></div>
+        </section>
+
+        <section class="login-panel" aria-labelledby="login-title">
+            <div class="login-panel-inner">
+                <a class="brand brand-dark mobile-brand" href="index.html" aria-label="ShopX home">
+                    <span class="brand-mark"><i class="bi bi-bag-heart-fill" aria-hidden="true"></i></span>
+                    <span>shop<span class="brand-accent">x</span></span>
+                </a>
+                <div class="login-heading">
+                    <span class="login-kicker"><span class="login-kicker-dot"></span> YOUR WORKSPACE IS READY</span>
+                    <h2 id="login-title">Welcome back<span>.</span></h2>
+                    <p>Sign in to pick up right where your business is moving.</p>
+                </div>
+
+                <div id="login-alert" class="login-alert" role="alert" aria-live="polite" hidden>
+                    <i class="bi bi-exclamation-circle-fill" aria-hidden="true"></i>
+                    <span>That email and password don’t match. Try the demo details below.</span>
+                </div>
+
+                <form id="login-form" class="login-form">
+                    <div class="field-group">
+                        <label for="email">Email address</label>
+                        <div class="field-wrap">
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
+                            <input type="email" id="email" name="email" placeholder="you@yourstore.com" autocomplete="username" required>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label for="password">Password</label>
+                        <div class="field-wrap">
+                            <i class="bi bi-lock" aria-hidden="true"></i>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                            <button class="password-toggle" id="passwordToggle" type="button" aria-label="Show password"><i class="bi bi-eye" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="check-label"><input type="checkbox" id="remember"><span class="custom-check"><i class="bi bi-check"></i></span> Keep me signed in</label>
+                        <span class="secure-note"><i class="bi bi-shield-lock" aria-hidden="true"></i> Secure sign in</span>
+                    </div>
+                    <button type="submit" class="login-submit">
+                        <span class="submit-label">Enter your workspace</span>
+                        <span class="submit-icon"><i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+                    </button>
+                </form>
+
+                <div class="demo-access">
+                    <div class="demo-icon"><i class="bi bi-sparkles" aria-hidden="true"></i></div>
+                    <div class="demo-copy"><span>Just taking a look?</span><strong>Use the demo workspace</strong></div>
+                    <button id="demoAutofill" type="button" aria-label="Fill demo credentials"><i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+                    <div class="demo-credentials">admin@shop.com <span>·</span> admin123</div>
+                </div>
+
+                <p class="login-footnote"><i class="bi bi-lock-fill" aria-hidden="true"></i> Private by design. Built for your next big move.</p>
+            </div>
+            <div class="panel-glow" aria-hidden="true"></div>
+        </section>
+    </div>
     <script src="js/login.js"></script>
 </body>
 </html>
